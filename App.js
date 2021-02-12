@@ -30,7 +30,7 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-
+import GraphScreen from "./Screens/GraphScreen";
 
 function HomeScreen({navigation}) {
   return (
@@ -65,13 +65,7 @@ function DetailsScreen() {
   );
 }
 
-function GraphScreen() {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>GraphScreen Screen</Text>
-    </View>
-  );
-}
+
 
 const Stack = createStackNavigator();
 
