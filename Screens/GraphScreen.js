@@ -1,23 +1,4 @@
-// import React from 'react';
-// import {
-//     SafeAreaView,
-//     StyleSheet,
-//     ScrollView,
-//     View,
-//     Text,
-//     StatusBar,
-//     Button
-//   } from 'react-native';
 
-// function GraphScreen() {
-//     return (
-//       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-//         <Text>GraphScreen Screen</Text>
-//       </View>
-//     );
-//   }
-
-//   export default GraphScreen;
 
 import React from 'react';
 import { AreaChart, Grid } from 'react-native-svg-charts';
@@ -66,7 +47,7 @@ class GraphScreen extends React.PureComponent {
           cy={y(item.score)}
           r={6}
           stroke={color}
-          fill="white"
+          fill="green"
           onPress={() =>
             this.setState({
               tooltipX: moment(item.date),
@@ -87,17 +68,18 @@ class GraphScreen extends React.PureComponent {
               yAccessor={({ item }) => item.score}
               xAccessor={({ item }) => moment(item.date)}
               contentInset={contentInset}
-              svg={{ fill: '#003F5A' }}
+              animate={true}
+              svg={{ fill: '#0000FF' }}
               numberOfTicks={10}
               yMin={0}
               yMax={10}
             >
-              <Grid svg={{ stroke: 'rgba(151, 151, 151, 0.09)' }} belowChart={false} />
-              <ChartPoints color="#003F5A" />
+              <Grid svg={{ stroke: 'rgba(255, 0, 0, 0.5)' }} belowChart={false} />
+              <ChartPoints color="#FF0000" />
               <Tooltip
                 tooltipX={tooltipX}
                 tooltipY={tooltipY}
-                color="#003F5A"
+                color="#009fde"
                 index={tooltipIndex}
                 dataLength={data.length}
               />

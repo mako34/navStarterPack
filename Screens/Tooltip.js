@@ -27,7 +27,7 @@ const Tooltip = ({
   return (
     <G x={x(tooltipX) - 40} y={y(tooltipY)}>
       <G y={tooltipY > 9 ? 20 : -29} x={xAxis}>
-        <Rect x={-2} y={0} height={22} width={70} stroke={color} fill="white" ry={10} rx={10} />
+        <Rect x={-2} y={0} height={22} width={70} stroke={color} fill="yellow" ry={10} rx={10} />
         <Rect x={-2} y={0} height={22} width={18} fill={color} ry={10} rx={10} />
         <Rect x={10} y={0} height={22} width={tooltipY > 9 ? 12 : 10} fill={color} />
         <Text x={6} y={14} stroke="#fff">

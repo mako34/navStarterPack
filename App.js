@@ -30,28 +30,32 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+import AnimusScreen from "./Screens/AnimusScreen";
 import GraphScreen from "./Screens/GraphScreen";
+import VictoryScreen from "./Screens/Victory1";
+import VictoryScreen2 from "./Screens/Victory2";
 
 function HomeScreen({navigation}) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Home Screenx</Text>
       <Button
-        title="Go to Bar graphs"
-        onPress={() => navigation.navigate('Details')}
+        title="Victory1"
+        onPress={() => navigation.navigate('Victory1')}
       />
       <Button
-        title="Go to Graphus chart"
+        title="Victory2ß"
+        onPress={() => navigation.navigate('VictoryScreen2')}
+      />
+      <Button
+        title="SVG-charts Graph chart"
         onPress={() => navigation.navigate('Graphus')}
       />
       <Button
-        title="Go to Loan chart"
-        onPress={() => navigation.navigate('Details')}
+        title="SVG-charts animated"
+        onPress={() => navigation.navigate('Animus')}
       />
-      <Button
-        title="Go to Loan chart"
-        onPress={() => navigation.navigate('Details')}
-      />
+      
     </View>
   );
 }
@@ -77,6 +81,9 @@ function App() {
         <Stack.Screen name="Charts demo" component={HomeScreen} />
         <Stack.Screen name="Details" component={DetailsScreen} />
         <Stack.Screen name="Graphus" component={GraphScreen} />
+        <Stack.Screen name="Animus" component={AnimusScreen} />
+        <Stack.Screen name="Victory1" component={VictoryScreen} />
+        <Stack.Screen name="VictoryScreen2" component={VictoryScreen2} />
 
         
       </Stack.Navigator>

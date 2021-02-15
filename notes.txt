@@ -1,0 +1,8 @@
+
+fixed ios link issue 
+if fail on android
+https://github.com/react-native-svg/react-native-svg/issues/834
+
+
+ask designer
+. lines grid above or velow chart?
