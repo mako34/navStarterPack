@@ -30,32 +30,44 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import AnimusScreen from "./Screens/AnimusScreen";
-import GraphScreen from "./Screens/GraphScreen";
-import VictoryScreen from "./Screens/Victory1";
-import VictoryScreen2 from "./Screens/Victory2";
+import VerticalBarsScreen from "./Screens/VerticalBars";
+import LineChartScreen from "./Screens/LineChart";
+import HorizontalBarScreen from "./Screens/HorizontalBar";
 
-function HomeScreen({navigation}) {
+
+
+function HomeScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screenx</Text>
+      <Text>Charts Nano</Text>
       <Button
-        title="Victory1"
-        onPress={() => navigation.navigate('Victory1')}
+        title="Bar graphs blue"
+        onPress={() => navigation.navigate('Month Bar Graph')}
+      />
+
+      <Button
+        title="Single line chart Light"
+        onPress={() => navigation.navigate('single.line.light')}
       />
       <Button
-        title="Victory2ß"
-        onPress={() => navigation.navigate('VictoryScreen2')}
+        title="Double line chart Light" 
+        onPress={() => navigation.navigate('double.line.light')}
       />
+       <Button
+        title="Single line chart Dark"
+        onPress={() => navigation.navigate('single.line.dark')}
+      />
+
       <Button
-        title="SVG-charts Graph chart"
-        onPress={() => navigation.navigate('Graphus')}
+        title="Horizontal line Dark"
+        onPress={() => navigation.navigate('Horizontal Bar Dark')}
       />
+
       <Button
-        title="SVG-charts animated"
-        onPress={() => navigation.navigate('Animus')}
+        title="Horizontal line Light"
+        onPress={() => navigation.navigate('Horizontal Bar Light')}
       />
-      
+
     </View>
   );
 }
@@ -78,14 +90,25 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Charts demo" component={HomeScreen} />
-        <Stack.Screen name="Details" component={DetailsScreen} />
-        <Stack.Screen name="Graphus" component={GraphScreen} />
-        <Stack.Screen name="Animus" component={AnimusScreen} />
-        <Stack.Screen name="Victory1" component={VictoryScreen} />
-        <Stack.Screen name="VictoryScreen2" component={VictoryScreen2} />
+        <Stack.Screen name="Charts Nano" component={HomeScreen} />
+        <Stack.Screen name="Month Bar Graph" component={VerticalBarsScreen} />
+        <Stack.Screen name="single.line.light">
+          {props => <LineChartScreen {...props} isDarkMode={false} isSingle={true}/>}
+        </Stack.Screen>
+        <Stack.Screen name="double.line.light">
+          {props => <LineChartScreen {...props} isDarkMode={false} isSingle={false}/>}
+        </Stack.Screen>
+        <Stack.Screen name="single.line.dark">
+          {props => <LineChartScreen {...props} isDarkMode={true} isSingle={true}/>}
+        </Stack.Screen>
+        <Stack.Screen name="Double line" component={LineChartScreen} />
+        <Stack.Screen name="Horizontal Bar Dark">
+          {props => <HorizontalBarScreen {...props} isDarkMode={true} />}
+        </Stack.Screen>
+        <Stack.Screen name="Horizontal Bar Light">
+          {props => <HorizontalBarScreen {...props} isDarkMode={false} />}
+        </Stack.Screen>
 
-        
       </Stack.Navigator>
     </NavigationContainer>
   );
