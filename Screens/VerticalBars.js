@@ -1,15 +1,9 @@
 
-// colors
-// blue bar: 009fde
-
-
 import React from 'react';
 import { StyleSheet, View, ImageBackground } from "react-native";
 import { 
   VictoryBar, 
   VictoryChart, 
-  VictoryTheme, 
-  VictoryTooltip,
   VictoryLabel,
   VictoryAxis,
   VictoryLine } from "victory-native";
@@ -19,7 +13,6 @@ const chartTheme = {
   axis: {
     style: {
       tickLabels: {
-        // this changed the color of my numbers to white
         fill: 'white',
       },
     },
@@ -27,11 +20,11 @@ const chartTheme = {
 };
 
 const data = [
-  { quarter: 1, earnings: 208 },
-  { quarter: 2, earnings: 182 },
-  { quarter: 3, earnings: 125 },
-  { quarter: 4, earnings: 120 },
-  { quarter: 5, earnings: 183 }
+  { quarter: 1, earnings: 208, month: 'Mar' },
+  { quarter: 2, earnings: 182, month: 'Apr' },
+  { quarter: 3, earnings: 125, month: 'May' },
+  { quarter: 4, earnings: 120, month: 'Jun' },
+  { quarter: 5, earnings: 183, month: 'Jul' }
 
 ];
 
@@ -67,6 +60,9 @@ export default class VerticalBars extends React.Component {
                 y={() => 200} />
 
               {/* x axis */}
+
+
+              
               <VictoryAxis
                 tickValues={['Mar', 'Apr', 'May', 'Jun', 'Jul']}
                 style={{ 

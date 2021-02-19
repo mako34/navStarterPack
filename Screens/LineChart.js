@@ -25,22 +25,11 @@ const data = [
 
 
 
-const configMainLine = (isSingle) => {
-  console.log("lo fue", isSingle)
 
-
-  if (isSingle) {
-    return Colors.lineGreen
-
-  }
-  else
-    return Colors.lineGray
-
-}
-
+//refactor!!!
 const configAxisColor = (isSingle, isDarkMode) => {
-  console.log("lo isSingle", isSingle)
-  console.log("lo isDarkMode", isDarkMode)
+  console.log("isSingle:", isSingle)
+  console.log("isDarkMode:", isDarkMode)
 
   if (isSingle && !isDarkMode) {
     return Colors.transparent
@@ -54,8 +43,23 @@ const configAxisColor = (isSingle, isDarkMode) => {
 
 }
 
-const configTooltipBackground = (isSingle, isDarkMode) => {
+const configLineColor = (isSingle, isDarkMode) => {
+  console.log("isSingle:", isSingle)
+  console.log("isDarkMode:", isDarkMode)
 
+  if (isSingle && !isDarkMode) {
+    return Colors.lineGreen
+  }
+  if (isSingle && isDarkMode) {
+    return Colors.lineBlue
+  }
+  if (!isSingle && !isDarkMode) {
+    return Colors.lineGray
+  }
+
+}
+
+const configTooltipBackground = (isSingle, isDarkMode) => {
   if (isSingle && !isDarkMode) {
     return Colors.lineGreen
   }
@@ -68,9 +72,12 @@ const configTooltipBackground = (isSingle, isDarkMode) => {
 }
 
 const Charter = ({ isSingle, isDarkMode }) => {
-  const mainLineColor = configMainLine(isSingle);
+  const mainLineColor = configLineColor(isSingle, isDarkMode);
   const axisColor = configAxisColor(isSingle, isDarkMode);
+  const axisLabelColor = !isDarkMode ? Colors.lineGray : Colors.white;
+  const axisGridColor = isDarkMode ? Colors.gridLineGray : 'transparent';
   const tooltipBgnd = configTooltipBackground(isSingle, isDarkMode);
+
 
   return (
     <VictoryChart
@@ -102,18 +109,34 @@ const Charter = ({ isSingle, isDarkMode }) => {
 
 
       <VictoryAxis
-
+        crossAxis
         tickValues={['Mar', 'Apr', 'May', 'Jun', 'Jul']}
         style={{
           axis: {
-            stroke: 'blue'  //CHANGE COLOR OF X-AXIS
+            stroke: axisColor  //CHANGE COLOR OF X-AXIS
           },
           tickLabels: {
-            fill: 'orange' //CHANGE COLOR OF x-AXIS LABELS
+            fill: axisLabelColor //CHANGE COLOR OF x-AXIS LABELS
           },
           grid: {
-            stroke: 'red', //CHANGE COLOR OF Y-AXIS GRID LINES
-            strokeDasharray: '3',
+            stroke: 'transparent', //CHANGE COLOR OF Y-AXIS GRID LINES
+          }
+        }}
+
+      />
+
+      <VictoryAxis
+        dependentAxis
+        style={{
+          axis: {
+            stroke: 'transparent'  //CHANGE COLOR OF X-AXIS
+          },
+          tickLabels: {
+            fill: 'transparent' //CHANGE COLOR OF x-AXIS LABELS
+          },
+          grid: {
+            stroke: axisGridColor, //CHANGE COLOR OF Y-AXIS GRID LINES
+            strokeDasharray: '0',
           }
         }}
 
@@ -150,10 +173,11 @@ const Charter = ({ isSingle, isDarkMode }) => {
         <Stop offset="70%" stopColor={Colors.gradientGreenStart} stopOpacity="0" />
       </LinearGradient>
 
+ 
       <VictoryArea
         style={{
           data: {
-            fill: 'url(#gradientStrokeGreen)',
+            fill: isDarkMode ? 'url(#gradientStrokeBlue)':'url(#gradientStrokeGreen)',
             stroke: mainLineColor,
             strokeWidth: 3,
 
@@ -174,7 +198,11 @@ const Charter = ({ isSingle, isDarkMode }) => {
       {!isSingle && !isDarkMode &&
 
         <VictoryArea
-          style={{ data: { fill: 'url(#gradientStrokeBlue)', stroke: Colors.lineBlue, strokeWidth: 3 } }}
+          style={{ 
+            data: { 
+              fill: 'url(#gradientStrokeBlue)', 
+              stroke: Colors.lineBlue, 
+              strokeWidth: 3 } }}
           data={[
             { x: 1, y: 0.5, y0: 0 },
             { x: 2.5, y: 2, y0: 0 },
@@ -187,8 +215,6 @@ const Charter = ({ isSingle, isDarkMode }) => {
 
 
       }
-
-
 
       {/* The dots */}
       <VictoryScatter
@@ -220,10 +246,6 @@ const Charter = ({ isSingle, isDarkMode }) => {
 
       }
 
-
-
-
-
     </VictoryChart>
   )
 
@@ -242,11 +264,8 @@ const LineChart = (props) => {
 
     <View style={styles.container}>
 
-
-
-
       {isDarkMode ? <ImageBackground source={require('../Images/bgndDark/bgGradient.png')} style={styles.container}>
-        <Charter isDarkMode />
+        <Charter isDarkMode={true} isSingle={isSingle} />
       </ImageBackground > : <Charter isDarkMode={false} isSingle={isSingle} />
       }
 

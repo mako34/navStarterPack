@@ -22,7 +22,8 @@ const Colors = {
     gradientGreenStart: '#d4f3f0',
     gradientGrayStart: '#b1b1b1',
     gradientBlueStart: '#1E93FA',
-    transparent: 'transparent'
+    transparent: 'transparent',
+    gridLineGray: '#4d4d4d'
   };
   module.exports = Colors ;
 
